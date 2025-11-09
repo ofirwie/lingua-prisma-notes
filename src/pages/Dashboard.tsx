@@ -1,6 +1,7 @@
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
+import { ImportDialog } from '@/components/ImportDialog';
 import { LogOut, BookOpen } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,6 +24,15 @@ const Dashboard = () => {
     return greetings[language];
   };
 
+  const getEmptyStateText = () => {
+    const texts = {
+      hebrew: 'אין שיעורים עדיין. ייבא את השיעור הראשון שלך כדי להתחיל!',
+      english: 'No lessons yet. Import your first lesson to get started!',
+      italian: 'Nessuna lezione ancora. Importa la tua prima lezione per iniziare!',
+    };
+    return texts[language];
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-card">
@@ -33,10 +43,13 @@ const Dashboard = () => {
             </div>
             <h1 className="text-2xl font-bold text-foreground">Deutsche Lernen</h1>
           </div>
-          <Button onClick={handleSignOut} variant="outline" size="sm">
-            <LogOut className="h-4 w-4 mr-2" />
-            Sign Out
-          </Button>
+          <div className="flex items-center gap-3">
+            <ImportDialog />
+            <Button onClick={handleSignOut} variant="outline" size="sm">
+              <LogOut className="h-4 w-4 mr-2" />
+              Sign Out
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -50,8 +63,7 @@ const Dashboard = () => {
               Welcome to your German learning dashboard
             </p>
             <div className="text-sm text-muted-foreground">
-              <p>Your learning journey starts here.</p>
-              <p className="mt-2">More features coming soon...</p>
+              <p className="mb-4">{getEmptyStateText()}</p>
             </div>
           </div>
         </div>
