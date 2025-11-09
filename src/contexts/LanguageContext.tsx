@@ -14,7 +14,10 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const { user } = useAuth();
-  const [language, setLanguageState] = useState<Language>('hebrew');
+  const [language, setLanguageState] = useState<Language>(() => {
+    const stored = localStorage.getItem('preferredLanguage');
+    return (stored as Language) || 'hebrew';
+  });
 
   useEffect(() => {
     if (user) {
@@ -39,6 +42,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   const setLanguage = async (lang: Language) => {
     setLanguageState(lang);
+    localStorage.setItem('preferredLanguage', lang);
     
     if (user) {
       await supabase
@@ -52,6 +56,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+    if (isRTL) {
+      document.documentElement.classList.add('rtl-mode');
+    } else {
+      document.documentElement.classList.remove('rtl-mode');
+    }
   }, [isRTL]);
 
   return (

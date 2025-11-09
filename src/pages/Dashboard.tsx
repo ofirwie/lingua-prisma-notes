@@ -1,71 +1,21 @@
-import { useAuth } from '@/contexts/AuthContext';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { Button } from '@/components/ui/button';
-import { ImportDialog } from '@/components/ImportDialog';
-import { LogOut, BookOpen } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import Header from '@/components/Header';
+import MaterialView from '@/components/MaterialView';
+import NotebookEditor from '@/components/NotebookEditor';
 
 const Dashboard = () => {
-  const { user, signOut } = useAuth();
-  const { language } = useLanguage();
-  const navigate = useNavigate();
-
-  const handleSignOut = async () => {
-    await signOut();
-    navigate('/auth');
-  };
-
-  const getGreeting = () => {
-    const greetings = {
-      hebrew: 'שלום',
-      english: 'Hello',
-      italian: 'Ciao',
-    };
-    return greetings[language];
-  };
-
-  const getEmptyStateText = () => {
-    const texts = {
-      hebrew: 'אין שיעורים עדיין. ייבא את השיעור הראשון שלך כדי להתחיל!',
-      english: 'No lessons yet. Import your first lesson to get started!',
-      italian: 'Nessuna lezione ancora. Importa la tua prima lezione per iniziare!',
-    };
-    return texts[language];
-  };
-
   return (
-    <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-card">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="rounded-full bg-primary p-2">
-              <BookOpen className="h-6 w-6 text-primary-foreground" />
-            </div>
-            <h1 className="text-2xl font-bold text-foreground">Deutsche Lernen</h1>
-          </div>
-          <div className="flex items-center gap-3">
-            <ImportDialog />
-            <Button onClick={handleSignOut} variant="outline" size="sm">
-              <LogOut className="h-4 w-4 mr-2" />
-              Sign Out
-            </Button>
-          </div>
+    <div className="min-h-screen bg-background flex flex-col">
+      <Header />
+      
+      <main className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+        {/* Left Panel - Material View */}
+        <div className="w-full lg:w-1/2 xl:w-1/2 h-[50vh] lg:h-auto">
+          <MaterialView />
         </div>
-      </header>
 
-      <main className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-card rounded-lg border border-border p-8 text-center">
-            <h2 className="text-3xl font-bold mb-2">
-              {getGreeting()}, {user?.user_metadata?.name || 'Student'}!
-            </h2>
-            <p className="text-muted-foreground text-lg mb-6">
-              Welcome to your German learning dashboard
-            </p>
-            <div className="text-sm text-muted-foreground">
-              <p className="mb-4">{getEmptyStateText()}</p>
-            </div>
-          </div>
+        {/* Right Panel - Notebook */}
+        <div className="w-full lg:w-1/2 xl:w-1/2 h-[50vh] lg:h-auto">
+          <NotebookEditor />
         </div>
       </main>
     </div>
