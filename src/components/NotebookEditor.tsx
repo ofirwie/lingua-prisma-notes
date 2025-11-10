@@ -46,7 +46,7 @@ const NotebookEditor = () => {
       TextStyle,
       Color,
     ],
-    content: '<p>Start taking notes here...</p>',
+    content: '<p>התחל לרשום הערות כאן...</p>',
     editorProps: {
       attributes: {
         class: 'prose prose-sm max-w-none focus:outline-none min-h-[400px] p-4',
@@ -89,10 +89,10 @@ const NotebookEditor = () => {
 
     if (data) {
       setNotebookId(data.id);
-      editor?.commands.setContent(data.content || '<p>Start taking notes here...</p>');
+      editor?.commands.setContent(data.content || '<p>התחל לרשום הערות כאן...</p>');
     } else {
       setNotebookId(null);
-      editor?.commands.setContent('<p>Start taking notes here...</p>');
+      editor?.commands.setContent('<p>התחל לרשום הערות כאן...</p>');
     }
   }, [user, selectedLessonId, editor]);
 
@@ -131,8 +131,8 @@ const NotebookEditor = () => {
       setLastSaved(new Date());
     } catch (error) {
       toast({
-        title: 'Save failed',
-        description: 'Could not save your notes. Please try again.',
+        title: 'שמירה נכשלה',
+        description: 'לא ניתן לשמור את ההערות שלך. אנא נסה שוב.',
         variant: 'destructive',
       });
     }
@@ -170,11 +170,11 @@ const NotebookEditor = () => {
     if (!lastSaved) return null;
 
     const seconds = Math.floor((Date.now() - lastSaved.getTime()) / 1000);
-    if (seconds < 60) return `${seconds} seconds ago`;
+    if (seconds < 60) return `לפני ${seconds} שניות`;
     const minutes = Math.floor(seconds / 60);
-    if (minutes < 60) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+    if (minutes < 60) return `לפני ${minutes} דקות`;
     const hours = Math.floor(minutes / 60);
-    return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+    return `לפני ${hours} שעות`;
   };
 
   if (!editor) return null;
@@ -184,7 +184,7 @@ const NotebookEditor = () => {
       <div className="p-4 border-b border-border space-y-3">
         <h2 className="text-lg font-semibold flex items-center gap-2">
           <NotebookPen className="h-5 w-5 text-primary" />
-          My Notebook
+          המחברת שלי
         </h2>
 
         {/* Lesson Selector */}
@@ -193,13 +193,13 @@ const NotebookEditor = () => {
           onValueChange={(value) => setSelectedLessonId(value === 'general' ? null : value)}
         >
           <SelectTrigger>
-            <SelectValue placeholder="Select lesson" />
+            <SelectValue placeholder="בחר שיעור" />
           </SelectTrigger>
           <SelectContent className="bg-card">
-            <SelectItem value="general">General Notes</SelectItem>
+            <SelectItem value="general">רשימות כלליות</SelectItem>
             {lessons.map((lesson) => (
               <SelectItem key={lesson.id} value={lesson.id}>
-                Lesson {lesson.lesson_number}
+                שיעור {lesson.lesson_number}
                 {lesson.lesson_name ? ` - ${lesson.lesson_name}` : ''}
               </SelectItem>
             ))}
@@ -260,7 +260,7 @@ const NotebookEditor = () => {
         {/* Last Saved */}
         {lastSaved && (
           <p className="text-xs text-muted-foreground">
-            Last saved: {getTimeSinceLastSave()}
+            נשמר לאחרונה: {getTimeSinceLastSave()}
           </p>
         )}
       </div>

@@ -84,21 +84,21 @@ export function ImportDialog() {
       <DialogTrigger asChild>
         <Button>
           <Upload className="h-4 w-4 mr-2" />
-          Import Lesson
+          ייבא שיעור
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Import Lesson from CSV</DialogTitle>
+          <DialogTitle>ייבא שיעור מקובץ CSV</DialogTitle>
           <DialogDescription>
-            Upload or paste your vocabulary data. Terms will be automatically de-duplicated.
+            העלה או הדבק את נתוני אוצר המילים שלך. מילים כפולות יוסרו אוטומטית.
           </DialogDescription>
         </DialogHeader>
 
         <Tabs defaultValue="upload" className="w-full">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="upload">Upload CSV</TabsTrigger>
-            <TabsTrigger value="paste">Paste CSV</TabsTrigger>
+            <TabsTrigger value="upload">העלה קובץ CSV</TabsTrigger>
+            <TabsTrigger value="paste">הדבק CSV</TabsTrigger>
           </TabsList>
 
           <TabsContent value="upload" className="space-y-4">
@@ -113,7 +113,7 @@ export function ImportDialog() {
               />
               <label htmlFor="csv-upload">
                 <Button variant="outline" asChild>
-                  <span>Choose CSV File</span>
+                  <span>בחר קובץ CSV</span>
                 </Button>
               </label>
             </div>
@@ -121,7 +121,7 @@ export function ImportDialog() {
 
           <TabsContent value="paste" className="space-y-4">
             <Textarea
-              placeholder="Paste your CSV data here..."
+              placeholder="הדבק את נתוני ה-CSV כאן..."
               value={csvText}
               onChange={(e) => handleCSVText(e.target.value)}
               className="min-h-[200px] font-mono text-sm"
@@ -132,20 +132,20 @@ export function ImportDialog() {
         <div className="space-y-4">
           <Alert>
             <AlertDescription className="text-xs">
-              <div className="font-semibold mb-2">📄 CSV Format:</div>
+              <div className="font-semibold mb-2">📄 פורמט CSV:</div>
               <code className="block bg-muted p-2 rounded text-xs overflow-x-auto whitespace-pre">
                 German,Hebrew,English,Italian,Lesson,PartOfSpeech,Gender,Category,Subcategory
               </code>
               <div className="mt-2 space-y-1">
-                <div><strong>Required:</strong> German, Lesson, Category</div>
-                <div><strong>Optional:</strong> translations, PartOfSpeech (noun/verb/adjective/adverb/phrase/other), Gender (der/die/das/none), Subcategory</div>
+                <div><strong>חובה:</strong> German, Lesson, Category</div>
+                <div><strong>אופציונלי:</strong> תרגומים, PartOfSpeech (noun/verb/adjective/adverb/phrase/other), Gender (der/die/das/none), Subcategory</div>
               </div>
             </AlertDescription>
           </Alert>
 
           <Button variant="outline" size="sm" onClick={downloadCSVTemplate}>
             <Download className="h-4 w-4 mr-2" />
-            Download Template
+            הורד תבנית
           </Button>
         </div>
 
@@ -153,13 +153,13 @@ export function ImportDialog() {
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>
-              <div className="font-semibold mb-2">Validation Errors:</div>
+              <div className="font-semibold mb-2">שגיאות אימות:</div>
               <ul className="list-disc list-inside space-y-1 text-sm">
                 {validationErrors.slice(0, 5).map((error, idx) => (
-                  <li key={idx}>Row {error.row}: {error.message}</li>
+                  <li key={idx}>שורה {error.row}: {error.message}</li>
                 ))}
                 {validationErrors.length > 5 && (
-                  <li>...and {validationErrors.length - 5} more errors</li>
+                  <li>...ועוד {validationErrors.length - 5} שגיאות נוספות</li>
                 )}
               </ul>
             </AlertDescription>
@@ -171,13 +171,13 @@ export function ImportDialog() {
             <Alert>
               <CheckCircle2 className="h-4 w-4" />
               <AlertDescription>
-                ✓ {parsedData.length} terms detected, Lesson {lessonNumber}
+                ✓ זוהו {parsedData.length} מונחים, שיעור {lessonNumber}
               </AlertDescription>
             </Alert>
 
             <div className="border rounded-lg overflow-hidden">
               <div className="bg-muted px-4 py-2 font-semibold text-sm">
-                Preview (first 5 rows)
+                תצוגה מקדימה (5 שורות ראשונות)
               </div>
               <Table>
                 <TableHeader>
@@ -211,24 +211,24 @@ export function ImportDialog() {
             <AlertDescription>
               {importResult.success ? (
                 <div>
-                  <div className="font-semibold mb-2">✓ Successfully imported {parsedData.length} terms</div>
+                  <div className="font-semibold mb-2">✓ יובאו בהצלחה {parsedData.length} מונחים</div>
                   <ul className="list-disc list-inside text-sm space-y-1">
-                    <li>{importResult.newTermsCount} new terms created</li>
-                    <li>{importResult.reusedTermsCount} existing terms reused</li>
-                    <li>Linked to Lesson {importResult.lessonNumber}</li>
+                    <li>{importResult.newTermsCount} מונחים חדשים נוצרו</li>
+                    <li>{importResult.reusedTermsCount} מונחים קיימים שוחזרו</li>
+                    <li>קושר לשיעור {importResult.lessonNumber}</li>
                   </ul>
                 </div>
               ) : (
                 <div>
-                  <div className="font-semibold mb-2">Import completed with errors:</div>
+                  <div className="font-semibold mb-2">הייבוא הושלם עם שגיאות:</div>
                   <ul className="list-disc list-inside text-sm space-y-1">
-                    <li>Successfully imported: {parsedData.length - (importResult.errors?.length || 0)} terms</li>
-                    <li>Failed: {importResult.errors?.length || 0} terms</li>
+                    <li>יובאו בהצלחה: {parsedData.length - (importResult.errors?.length || 0)} מונחים</li>
+                    <li>נכשלו: {importResult.errors?.length || 0} מונחים</li>
                   </ul>
                   {importResult.errors && (
                     <ul className="list-disc list-inside text-sm space-y-1 mt-2">
                       {importResult.errors.slice(0, 3).map((error: any, idx: number) => (
-                        <li key={idx}>Row {error.row}: {error.message}</li>
+                        <li key={idx}>שורה {error.row}: {error.message}</li>
                       ))}
                     </ul>
                   )}
@@ -240,13 +240,13 @@ export function ImportDialog() {
 
         <div className="flex justify-end gap-2">
           <Button variant="outline" onClick={() => setOpen(false)}>
-            Cancel
+            ביטול
           </Button>
           <Button
             onClick={handleImport}
             disabled={parsedData.length === 0 || validationErrors.length > 0 || importing || importResult?.success}
           >
-            {importing ? 'Importing...' : 'Import'}
+            {importing ? 'מייבא...' : 'ייבא'}
           </Button>
         </div>
       </DialogContent>

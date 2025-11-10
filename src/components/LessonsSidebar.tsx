@@ -80,8 +80,8 @@ export function LessonsSidebar({ onLessonSelect, selectedLessonId }: LessonsSide
     } catch (error) {
       console.error('Error fetching lessons:', error);
       toast({
-        title: 'Error',
-        description: 'Failed to load lessons',
+        title: 'שגיאה',
+        description: 'טעינת השיעורים נכשלה',
         variant: 'destructive',
       });
     } finally {
@@ -96,8 +96,8 @@ export function LessonsSidebar({ onLessonSelect, selectedLessonId }: LessonsSide
   const handleRename = async (lessonId: string) => {
     if (!editName.trim()) {
       toast({
-        title: 'Error',
-        description: 'Lesson name cannot be empty',
+        title: 'שגיאה',
+        description: 'שם השיעור לא יכול להיות ריק',
         variant: 'destructive',
       });
       return;
@@ -118,14 +118,14 @@ export function LessonsSidebar({ onLessonSelect, selectedLessonId }: LessonsSide
       setEditName('');
       
       toast({
-        title: 'Success',
-        description: 'Lesson renamed successfully',
+        title: 'הצלחה',
+        description: 'שם השיעור שונה בהצלחה',
       });
     } catch (error) {
       console.error('Error renaming lesson:', error);
       toast({
-        title: 'Error',
-        description: 'Failed to rename lesson',
+        title: 'שגיאה',
+        description: 'שינוי שם השיעור נכשל',
         variant: 'destructive',
       });
     }
@@ -148,14 +148,14 @@ export function LessonsSidebar({ onLessonSelect, selectedLessonId }: LessonsSide
       setLessonToDelete(null);
       
       toast({
-        title: 'Success',
-        description: 'Lesson deleted successfully',
+        title: 'הצלחה',
+        description: 'השיעור נמחק בהצלחה',
       });
     } catch (error) {
       console.error('Error deleting lesson:', error);
       toast({
-        title: 'Error',
-        description: 'Failed to delete lesson',
+        title: 'שגיאה',
+        description: 'מחיקת השיעור נכשלה',
         variant: 'destructive',
       });
     }
@@ -181,7 +181,7 @@ export function LessonsSidebar({ onLessonSelect, selectedLessonId }: LessonsSide
       <Sidebar className="w-64 border-r border-border">
         <SidebarContent>
           <SidebarGroup>
-            <SidebarGroupLabel>Loading...</SidebarGroupLabel>
+            <SidebarGroupLabel>טוען...</SidebarGroupLabel>
           </SidebarGroup>
         </SidebarContent>
       </Sidebar>
@@ -194,13 +194,13 @@ export function LessonsSidebar({ onLessonSelect, selectedLessonId }: LessonsSide
         <SidebarContent>
           <SidebarGroup>
             <SidebarGroupLabel className="flex items-center justify-between px-2">
-              <span>My Lessons</span>
+              <span>השיעורים שלי</span>
               <Badge variant="secondary">{lessons.length}</Badge>
             </SidebarGroupLabel>
             <SidebarGroupContent>
               {lessons.length === 0 ? (
                 <div className="px-4 py-8 text-center text-sm text-muted-foreground">
-                  No lessons yet. Import your first lesson to get started!
+                  אין שיעורים עדיין. ייבא את השיעור הראשון שלך כדי להתחיל!
                 </div>
               ) : (
                 <SidebarMenu>
@@ -282,17 +282,17 @@ export function LessonsSidebar({ onLessonSelect, selectedLessonId }: LessonsSide
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Delete Lesson</AlertDialogTitle>
+            <AlertDialogTitle>מחק שיעור</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to delete "{lessonToDelete?.lesson_name || `Lesson ${lessonToDelete?.lesson_number}`}"? 
-              This will remove {lessonToDelete?.term_count} term{lessonToDelete?.term_count !== 1 ? 's' : ''} from this lesson.
-              This action cannot be undone.
+              האם אתה בטוח שברצונך למחוק את "{lessonToDelete?.lesson_name || `שיעור ${lessonToDelete?.lesson_number}`}"? 
+              פעולה זו תסיר {lessonToDelete?.term_count} מונחים משיעור זה.
+              לא ניתן לבטל פעולה זו.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel>ביטול</AlertDialogCancel>
             <AlertDialogAction onClick={handleDelete} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
-              Delete
+              מחק
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
