@@ -226,20 +226,24 @@ const MaterialView = ({ selectedLessonId }: MaterialViewProps) => {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="w-[30%]">German</TableHead>
-                    <TableHead className="w-[25%]">Hebrew</TableHead>
+                    <TableHead className="w-[35%]">German</TableHead>
+                    <TableHead className="w-[30%] text-right" dir="rtl">עברית</TableHead>
                     <TableHead className="w-[25%]">English</TableHead>
-                    <TableHead className="w-[20%]">Part</TableHead>
+                    <TableHead className="w-[10%]">Type</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {categoryTerms.map((term) => (
                     <TableRow key={term.id}>
-                      <TableCell>{renderGermanWord(term)}</TableCell>
-                      <TableCell className="text-right" dir="rtl">
+                      <TableCell className="font-medium text-lg">
+                        {renderGermanWord(term)}
+                      </TableCell>
+                      <TableCell className="text-right text-lg" dir="rtl">
                         {term.translations.hebrew || '-'}
                       </TableCell>
-                      <TableCell>{term.translations.english || '-'}</TableCell>
+                      <TableCell className="text-base text-muted-foreground">
+                        {term.translations.english || '-'}
+                      </TableCell>
                       <TableCell>
                         <Badge variant="secondary" className="text-xs">
                           {term.part}
