@@ -1,0 +1,81 @@
+{
+  "lesson": {
+    "lesson_number": 2,
+    "lesson_name": "Common Nouns",
+    "description": "Everyday German nouns with genders"
+  },
+  "terms": [
+    {
+      "german": "Tisch",
+      "part": "noun",
+      "gender": "der",
+      "translations": {
+        "he": "שולחן",
+        "en": "table",
+        "it": "tavolo"
+      },
+      "category": "Nouns",
+      "subcategory": "Furniture"
+    },
+    {
+      "german": "Lampe",
+      "part": "noun",
+      "gender": "die",
+      "translations": {
+        "he": "מנורה",
+        "en": "lamp",
+        "it": "lampada"
+      },
+      "category": "Nouns",
+      "subcategory": "Furniture"
+    },
+    {
+      "german": "Buch",
+      "part": "noun",
+      "gender": "das",
+      "translations": {
+        "he": "ספר",
+        "en": "book",
+        "it": "libro"
+      },
+      "category": "Nouns",
+      "subcategory": "Objects"
+    },
+    {
+      "german": "Stuhl",
+      "part": "noun",
+      "gender": "der",
+      "translations": {
+        "he": "כיסא",
+        "en": "chair",
+        "it": "sedia"
+      },
+      "category": "Nouns",
+      "subcategory": "Furniture"
+    },
+    {
+      "german": "Fenster",
+      "part": "noun",
+      "gender": "das",
+      "translations": {
+        "he": "חלון",
+        "en": "window",
+        "it": "finestra"
+      },
+      "category": "Nouns",
+      "subcategory": "Architecture"
+    },
+    {
+      "german": "Tür",
+      "part": "noun",
+      "gender": "die",
+      "translations": {
+        "he": "דלת",
+        "en": "door",
+        "it": "porta"
+      },
+      "category": "Nouns",
+      "subcategory": "Architecture"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "lesson": {
+    "lesson_number": 1,
+    "lesson_name": "Basic Verbs",
+    "description": "Essential German verbs for beginners"
+  },
+  "terms": [
+    {
+      "german": "sein",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "להיות",
+        "en": "to be",
+        "it": "essere"
+      },
+      "category": "Verbs",
+      "subcategory": "Irregular"
+    },
+    {
+      "german": "haben",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "להיות בעל",
+        "en": "to have",
+        "it": "avere"
+      },
+      "category": "Verbs",
+      "subcategory": "Irregular"
+    },
+    {
+      "german": "gehen",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "ללכת",
+        "en": "to go",
+        "it": "andare"
+      },
+      "category": "Verbs",
+      "subcategory": "Regular"
+    },
+    {
+      "german": "kommen",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "לבוא",
+        "en": "to come",
+        "it": "venire"
+      },
+      "category": "Verbs",
+      "subcategory": "Regular"
+    },
+    {
+      "german": "machen",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "לעשות",
+        "en": "to make/do",
+        "it": "fare"
+      },
+      "category": "Verbs",
+      "subcategory": "Regular"
+    }
+  ]
+}
