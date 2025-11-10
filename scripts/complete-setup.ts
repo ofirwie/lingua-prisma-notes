@@ -8,7 +8,7 @@ config();
 const supabaseUrl = process.env.VITE_SUPABASE_URL!;
 const supabaseKey = process.env.VITE_SUPABASE_PUBLISHABLE_KEY!;
 
-const FIXED_EMAIL = 'admin.deutsche@gmail.com';
+const FIXED_EMAIL = 'ofir.wienerman@gmail.com';
 const FIXED_PASSWORD = 'Deutsche2024!Churro';
 
 const supabase = createClient(supabaseUrl, supabaseKey);

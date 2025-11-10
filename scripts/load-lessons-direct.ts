@@ -17,7 +17,7 @@ if (!supabaseUrl || !supabaseKey) {
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Fixed credentials
-const FIXED_EMAIL = 'admin.deutsche@gmail.com';
+const FIXED_EMAIL = 'ofir.wienerman@gmail.com';
 const FIXED_PASSWORD = 'Deutsche2024!Churro';
 
 async function login() {
