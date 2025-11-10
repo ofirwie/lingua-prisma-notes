@@ -17,7 +17,7 @@ if (!supabaseUrl || !supabaseKey) {
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Fixed credentials from SimpleAuth
-const FIXED_EMAIL = 'admin@deutsche-lernen.app';
+const FIXED_EMAIL = 'admin@deutsche-lernen.com';
 const FIXED_PASSWORD = 'Deutsche2024!Churro';
 
 async function runMigration() {
