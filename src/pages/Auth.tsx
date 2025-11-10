@@ -61,7 +61,7 @@ const Auth = () => {
         variant: 'destructive',
       });
     } else {
-      navigate('/');
+      navigate('/dashboard');
     }
   };
 
@@ -107,7 +107,7 @@ const Auth = () => {
         title: 'Account Created',
         description: 'You can now log in with your credentials.',
       });
-      navigate('/');
+      navigate('/dashboard');
     }
   };
 
