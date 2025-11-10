@@ -9,6 +9,7 @@ export interface LessonMetadata {
   lesson_number: number;
   lesson_name?: string;
   description?: string;
+  topics?: string[]; // e.g., ["Tenses", "Basic Questions", "Greetings"]
 }
 
 export interface TermData {

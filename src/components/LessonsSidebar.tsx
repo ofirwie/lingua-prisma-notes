@@ -30,6 +30,7 @@ interface Lesson {
   id: string;
   lesson_number: number;
   lesson_name: string | null;
+  topics?: string[];
   term_count: number;
 }
 
@@ -55,7 +56,7 @@ export function LessonsSidebar({ onLessonSelect, selectedLessonId }: LessonsSide
       // Fetch lessons with term counts
       const { data: lessonsData, error: lessonsError } = await supabase
         .from('lessons')
-        .select('id, lesson_number, lesson_name')
+        .select('id, lesson_number, lesson_name, topics')
         .eq('created_by', user.id)
         .order('lesson_number', { ascending: true });
 
@@ -236,38 +237,49 @@ export function LessonsSidebar({ onLessonSelect, selectedLessonId }: LessonsSide
                           </Button>
                         </div>
                       ) : (
-                        <div className="group flex items-center gap-1 w-full">
-                          <SidebarMenuButton
-                            onClick={() => onLessonSelect?.(lesson.id)}
-                            isActive={selectedLessonId === lesson.id}
-                            className="flex-1"
-                          >
-                            <GripVertical className="h-4 w-4 text-muted-foreground" />
-                            <span className="flex-1 truncate">
-                              {lesson.lesson_name || `Lesson ${lesson.lesson_number}`}
-                            </span>
-                            <Badge variant="secondary" className="ml-auto">
-                              {lesson.term_count}
-                            </Badge>
-                          </SidebarMenuButton>
-                          <div className="opacity-0 group-hover:opacity-100 flex gap-1 pr-2">
-                            <Button
-                              size="sm"
-                              variant="ghost"
-                              onClick={() => startEdit(lesson)}
-                              className="h-7 w-7 p-0"
+                        <div className="group flex flex-col w-full">
+                          <div className="flex items-center gap-1 w-full">
+                            <SidebarMenuButton
+                              onClick={() => onLessonSelect?.(lesson.id)}
+                              isActive={selectedLessonId === lesson.id}
+                              className="flex-1"
                             >
-                              <Pencil className="h-3 w-3" />
-                            </Button>
-                            <Button
-                              size="sm"
-                              variant="ghost"
-                              onClick={() => confirmDelete(lesson)}
-                              className="h-7 w-7 p-0 text-destructive hover:text-destructive"
-                            >
-                              <Trash2 className="h-3 w-3" />
-                            </Button>
+                              <GripVertical className="h-4 w-4 text-muted-foreground" />
+                              <span className="flex-1 truncate">
+                                {lesson.lesson_name || `Lesson ${lesson.lesson_number}`}
+                              </span>
+                              <Badge variant="secondary" className="ml-auto">
+                                {lesson.term_count}
+                              </Badge>
+                            </SidebarMenuButton>
+                            <div className="opacity-0 group-hover:opacity-100 flex gap-1 pr-2">
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                onClick={() => startEdit(lesson)}
+                                className="h-7 w-7 p-0"
+                              >
+                                <Pencil className="h-3 w-3" />
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                onClick={() => confirmDelete(lesson)}
+                                className="h-7 w-7 p-0 text-destructive hover:text-destructive"
+                              >
+                                <Trash2 className="h-3 w-3" />
+                              </Button>
+                            </div>
                           </div>
+                          {lesson.topics && lesson.topics.length > 0 && (
+                            <div className="flex gap-1 flex-wrap px-8 pb-2">
+                              {lesson.topics.map((topic, idx) => (
+                                <Badge key={idx} variant="outline" className="text-xs">
+                                  {topic}
+                                </Badge>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       )}
                     </SidebarMenuItem>

@@ -120,12 +120,13 @@ export async function importLessonFromJSON(
     if (existingLesson) {
       lessonId = existingLesson.id;
 
-      // Update lesson name/description if provided
-      if (data.lesson.lesson_name) {
+      // Update lesson name/description/topics if provided
+      if (data.lesson.lesson_name || data.lesson.topics) {
         await supabase
           .from('lessons')
           .update({
             lesson_name: data.lesson.lesson_name,
+            topics: data.lesson.topics || [],
           })
           .eq('id', lessonId);
       }
@@ -135,6 +136,7 @@ export async function importLessonFromJSON(
         .insert({
           lesson_number: lessonNumber,
           lesson_name: data.lesson.lesson_name || `Lesson ${lessonNumber}`,
+          topics: data.lesson.topics || [],
           created_by: userId,
         })
         .select('id')
