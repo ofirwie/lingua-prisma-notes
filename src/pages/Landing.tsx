@@ -17,7 +17,7 @@ const Landing = () => {
             <h1 className="text-2xl font-bold text-foreground">🇩🇪 Deutsche Lernen</h1>
           </div>
           <Button onClick={() => navigate('/auth')} size="lg">
-            כניסה / הרשמה
+            Sign In / Sign Up
           </Button>
         </div>
       </header>
@@ -26,15 +26,15 @@ const Landing = () => {
       <main className="container mx-auto px-4 py-16">
         <div className="text-center max-w-4xl mx-auto mb-20">
           <h2 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
-            למד גרמנית בצורה מאורגנת
+            Learn German the Organized Way
           </h2>
           <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-            ספר לימוד דיגיטלי + מחברת אישית במקום אחד.
+            Digital textbook + personal notebook in one place.
             <br />
-            ייבא את אוצר המילים שלך, תרגם לעברית, אנגלית ואיטלקית, וקח רשימות.
+            Import your vocabulary, translate to Hebrew, English and Italian, and take notes.
           </p>
           <Button onClick={() => navigate('/auth')} size="lg" className="text-lg px-8 py-6">
-            התחל ללמוד עכשיו
+            Start Learning Now
             <Sparkles className="mr-2 h-5 w-5" />
           </Button>
         </div>
@@ -45,9 +45,9 @@ const Landing = () => {
             <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
               <Upload className="h-8 w-8 text-primary" />
             </div>
-            <h3 className="text-xl font-semibold mb-3">ייבוא קל</h3>
+            <h3 className="text-xl font-semibold mb-3">Easy Import</h3>
             <p className="text-muted-foreground">
-              העלה קובץ CSV עם אוצר המילים מהשיעורים שלך והכל יאורגן אוטומטית
+              Upload a CSV file with vocabulary from your lessons and everything will be organized automatically
             </p>
           </div>
 
@@ -55,9 +55,9 @@ const Landing = () => {
             <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
               <BookOpen className="h-8 w-8 text-primary" />
             </div>
-            <h3 className="text-xl font-semibold mb-3">חומר לימוד מסודר</h3>
+            <h3 className="text-xl font-semibold mb-3">Organized Study Material</h3>
             <p className="text-muted-foreground">
-              צפה בכל המילים עם תרגומים לשלוש שפות, מסודר לפי קטגוריות ושיעורים
+              View all words with translations in three languages, organized by categories and lessons
             </p>
           </div>
 
@@ -65,9 +65,9 @@ const Landing = () => {
             <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
               <FileText className="h-8 w-8 text-primary" />
             </div>
-            <h3 className="text-xl font-semibold mb-3">מחברת דיגיטלית</h3>
+            <h3 className="text-xl font-semibold mb-3">Digital Notebook</h3>
             <p className="text-muted-foreground">
-              רשום הערות עם עורך טקסט עשיר, עם שמירה אוטומטית לכל שיעור
+              Take notes with a rich text editor, with automatic saving for each lesson
             </p>
           </div>
         </div>
@@ -84,24 +84,24 @@ const Landing = () => {
               <div className="bg-muted/30 rounded-lg p-6 flex flex-col">
                 <div className="flex items-center gap-2 mb-4">
                   <BookOpen className="h-5 w-5 text-primary" />
-                  <span className="font-semibold">חומר לימוד</span>
+                  <span className="font-semibold">Study Material</span>
                 </div>
                 <div className="flex-1 flex items-center justify-center text-muted-foreground">
                   <div className="text-center">
                     <BookOpen className="h-16 w-16 mx-auto mb-2 opacity-20" />
-                    <p>הצג אוצר מילים מסודר</p>
+                    <p>View organized vocabulary</p>
                   </div>
                 </div>
               </div>
               <div className="bg-muted/30 rounded-lg p-6 flex flex-col">
                 <div className="flex items-center gap-2 mb-4">
                   <FileText className="h-5 w-5 text-primary" />
-                  <span className="font-semibold">מחברת אישית</span>
+                  <span className="font-semibold">Personal Notebook</span>
                 </div>
                 <div className="flex-1 flex items-center justify-center text-muted-foreground">
                   <div className="text-center">
                     <FileText className="h-16 w-16 mx-auto mb-2 opacity-20" />
-                    <p>קח רשימות עם עורך טקסט</p>
+                    <p>Take notes with text editor</p>
                   </div>
                 </div>
               </div>
@@ -111,10 +111,10 @@ const Landing = () => {
 
         {/* CTA Section */}
         <div className="text-center mt-20">
-          <h3 className="text-3xl font-bold mb-4">מוכן להתחיל?</h3>
-          <p className="text-muted-foreground mb-6">הצטרף עכשיו והתחל ללמוד גרמנית בצורה יעילה יותר</p>
+          <h3 className="text-3xl font-bold mb-4">Ready to Start?</h3>
+          <p className="text-muted-foreground mb-6">Join now and start learning German more effectively</p>
           <Button onClick={() => navigate('/auth')} size="lg" className="text-lg px-8 py-6">
-            צור חשבון חינם
+            Create Free Account
           </Button>
         </div>
       </main>
@@ -122,7 +122,7 @@ const Landing = () => {
       {/* Footer */}
       <footer className="border-t border-border bg-card/50 mt-20">
         <div className="container mx-auto px-4 py-8 text-center text-muted-foreground">
-          <p>© 2025 Deutsche Lernen. כל הזכויות שמורות.</p>
+          <p>© 2025 Deutsche Lernen. All rights reserved.</p>
         </div>
       </footer>
     </div>

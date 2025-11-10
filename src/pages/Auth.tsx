@@ -11,15 +11,15 @@ import { BookOpen } from 'lucide-react';
 import { z } from 'zod';
 
 const signupSchema = z.object({
-  email: z.string().trim().email({ message: 'כתובת אימייל לא תקינה' }),
-  password: z.string().min(6, { message: 'סיסמה חייבת להכיל לפחות 6 תווים' }),
-  name: z.string().trim().min(1, { message: 'שם הוא שדה חובה' }),
+  email: z.string().trim().email({ message: 'Invalid email address' }),
+  password: z.string().min(6, { message: 'Password must be at least 6 characters' }),
+  name: z.string().trim().min(1, { message: 'Name is required' }),
   nativeLanguage: z.enum(['hebrew', 'english', 'italian']),
 });
 
 const loginSchema = z.object({
-  email: z.string().trim().email({ message: 'כתובת אימייל לא תקינה' }),
-  password: z.string().min(1, { message: 'סיסמה היא שדה חובה' }),
+  email: z.string().trim().email({ message: 'Invalid email address' }),
+  password: z.string().min(1, { message: 'Password is required' }),
 });
 
 const Auth = () => {
@@ -38,7 +38,7 @@ const Auth = () => {
     const validation = loginSchema.safeParse({ email, password });
     if (!validation.success) {
       toast({
-        title: 'שגיאת אימות',
+        title: 'Validation Error',
         description: validation.error.errors[0].message,
         variant: 'destructive',
       });
@@ -56,7 +56,7 @@ const Auth = () => {
 
     if (error) {
       toast({
-        title: 'כניסה נכשלה',
+        title: 'Login Failed',
         description: error.message,
         variant: 'destructive',
       });
@@ -71,7 +71,7 @@ const Auth = () => {
     const validation = signupSchema.safeParse({ email, password, name, nativeLanguage });
     if (!validation.success) {
       toast({
-        title: 'שגיאת אימות',
+        title: 'Validation Error',
         description: validation.error.errors[0].message,
         variant: 'destructive',
       });
@@ -98,14 +98,14 @@ const Auth = () => {
 
     if (error) {
       toast({
-        title: 'הרשמה נכשלה',
+        title: 'Signup Failed',
         description: error.message,
         variant: 'destructive',
       });
     } else {
       toast({
-        title: 'חשבון נוצר בהצלחה',
-        description: 'כעת תוכל להיכנס עם פרטי ההתחברות שלך.',
+        title: 'Account Created',
+        description: 'You can now log in with your credentials.',
       });
       navigate('/dashboard');
     }
@@ -122,18 +122,18 @@ const Auth = () => {
           </div>
           <CardTitle className="text-2xl font-bold">Deutsche Lernen</CardTitle>
           <CardDescription>
-            {isLogin ? 'ברוך שובך! היכנס כדי להמשיך ללמוד.' : 'צור חשבון חדש כדי להתחיל ללמוד גרמנית.'}
+            {isLogin ? 'Welcome back! Sign in to continue learning.' : 'Create your account to start learning German.'}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={isLogin ? handleLogin : handleSignup} className="space-y-4">
             {!isLogin && (
               <div className="space-y-2">
-                <Label htmlFor="name">שם</Label>
+                <Label htmlFor="name">Name</Label>
                 <Input
                   id="name"
                   type="text"
-                  placeholder="הזן את שמך"
+                  placeholder="Enter your name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required={!isLogin}
@@ -142,11 +142,11 @@ const Auth = () => {
             )}
             
             <div className="space-y-2">
-              <Label htmlFor="email">אימייל</Label>
+              <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="הזן את כתובת האימייל שלך"
+                placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -154,11 +154,11 @@ const Auth = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">סיסמה</Label>
+              <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
                 type="password"
-                placeholder="הזן את הסיסמה שלך"
+                placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -167,7 +167,7 @@ const Auth = () => {
 
             {!isLogin && (
               <div className="space-y-2">
-                <Label htmlFor="language">שפת אם</Label>
+                <Label htmlFor="language">Native Language</Label>
                 <Select value={nativeLanguage} onValueChange={(value: 'hebrew' | 'english' | 'italian') => setNativeLanguage(value)}>
                   <SelectTrigger id="language">
                     <SelectValue />
@@ -182,7 +182,7 @@ const Auth = () => {
             )}
 
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? 'אנא המתן...' : (isLogin ? 'כניסה' : 'יצירת חשבון')}
+              {loading ? 'Please wait...' : (isLogin ? 'Sign In' : 'Create Account')}
             </Button>
 
             <div className="text-center text-sm">
@@ -191,7 +191,7 @@ const Auth = () => {
                 onClick={() => setIsLogin(!isLogin)}
                 className="text-primary hover:underline"
               >
-                {isLogin ? "אין לך חשבון? הירשם" : 'כבר יש לך חשבון? היכנס'}
+                {isLogin ? "Don't have an account? Sign up" : 'Already have an account? Sign in'}
               </button>
             </div>
           </form>

@@ -50,7 +50,7 @@ const Header = () => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="bg-card">
-              <DropdownMenuLabel>בחר שפה</DropdownMenuLabel>
+              <DropdownMenuLabel>Select Language</DropdownMenuLabel>
               <DropdownMenuSeparator />
               {(Object.entries(languages) as [keyof typeof languages, typeof languages.hebrew][]).map(([key, lang]) => (
                 <DropdownMenuItem
@@ -78,16 +78,16 @@ const Header = () => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="bg-card">
-              <DropdownMenuLabel>החשבון שלי</DropdownMenuLabel>
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
                 <Settings className="h-4 w-4 mr-2" />
-                הגדרות
+                Settings
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleSignOut}>
                 <LogOut className="h-4 w-4 mr-2" />
-                התנתק
+                Logout
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

@@ -80,8 +80,8 @@ export function LessonsSidebar({ onLessonSelect, selectedLessonId }: LessonsSide
     } catch (error) {
       console.error('Error fetching lessons:', error);
       toast({
-        title: 'שגיאה',
-        description: 'טעינת השיעורים נכשלה',
+        title: 'Error',
+        description: 'Failed to load lessons',
         variant: 'destructive',
       });
     } finally {
@@ -96,8 +96,8 @@ export function LessonsSidebar({ onLessonSelect, selectedLessonId }: LessonsSide
   const handleRename = async (lessonId: string) => {
     if (!editName.trim()) {
       toast({
-        title: 'שגיאה',
-        description: 'שם השיעור לא יכול להיות ריק',
+        title: 'Error',
+        description: 'Lesson name cannot be empty',
         variant: 'destructive',
       });
       return;
@@ -118,14 +118,14 @@ export function LessonsSidebar({ onLessonSelect, selectedLessonId }: LessonsSide
       setEditName('');
       
       toast({
-        title: 'הצלחה',
-        description: 'שם השיעור שונה בהצלחה',
+        title: 'Success',
+        description: 'Lesson renamed successfully',
       });
     } catch (error) {
       console.error('Error renaming lesson:', error);
       toast({
-        title: 'שגיאה',
-        description: 'שינוי שם השיעור נכשל',
+        title: 'Error',
+        description: 'Failed to rename lesson',
         variant: 'destructive',
       });
     }
@@ -148,14 +148,14 @@ export function LessonsSidebar({ onLessonSelect, selectedLessonId }: LessonsSide
       setLessonToDelete(null);
       
       toast({
-        title: 'הצלחה',
-        description: 'השיעור נמחק בהצלחה',
+        title: 'Success',
+        description: 'Lesson deleted successfully',
       });
     } catch (error) {
       console.error('Error deleting lesson:', error);
       toast({
-        title: 'שגיאה',
-        description: 'מחיקת השיעור נכשלה',
+        title: 'Error',
+        description: 'Failed to delete lesson',
         variant: 'destructive',
       });
     }
@@ -181,7 +181,7 @@ export function LessonsSidebar({ onLessonSelect, selectedLessonId }: LessonsSide
       <Sidebar className="w-64 border-r border-border">
         <SidebarContent>
           <SidebarGroup>
-            <SidebarGroupLabel>טוען...</SidebarGroupLabel>
+            <SidebarGroupLabel>Loading...</SidebarGroupLabel>
           </SidebarGroup>
         </SidebarContent>
       </Sidebar>
@@ -194,13 +194,13 @@ export function LessonsSidebar({ onLessonSelect, selectedLessonId }: LessonsSide
         <SidebarContent>
           <SidebarGroup>
             <SidebarGroupLabel className="flex items-center justify-between px-2">
-              <span>השיעורים שלי</span>
+              <span>My Lessons</span>
               <Badge variant="secondary">{lessons.length}</Badge>
             </SidebarGroupLabel>
             <SidebarGroupContent>
               {lessons.length === 0 ? (
                 <div className="px-4 py-8 text-center text-sm text-muted-foreground">
-                  אין שיעורים עדיין. ייבא את השיעור הראשון שלך כדי להתחיל!
+                  No lessons yet. Import your first lesson to get started!
                 </div>
               ) : (
                 <SidebarMenu>
@@ -282,17 +282,17 @@ export function LessonsSidebar({ onLessonSelect, selectedLessonId }: LessonsSide
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>מחק שיעור</AlertDialogTitle>
+            <AlertDialogTitle>Delete Lesson</AlertDialogTitle>
             <AlertDialogDescription>
-              האם אתה בטוח שברצונך למחוק את "{lessonToDelete?.lesson_name || `שיעור ${lessonToDelete?.lesson_number}`}"? 
-              פעולה זו תסיר {lessonToDelete?.term_count} מונחים משיעור זה.
-              לא ניתן לבטל פעולה זו.
+              Are you sure you want to delete "{lessonToDelete?.lesson_name || `Lesson ${lessonToDelete?.lesson_number}`}"? 
+              This will remove {lessonToDelete?.term_count} term{lessonToDelete?.term_count !== 1 ? 's' : ''} from this lesson.
+              This action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>ביטול</AlertDialogCancel>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction onClick={handleDelete} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
-              מחק
+              Delete
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
