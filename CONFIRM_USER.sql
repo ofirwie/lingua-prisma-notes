@@ -3,9 +3,9 @@
 
 UPDATE auth.users
 SET email_confirmed_at = NOW()
-WHERE email = 'admin.deutsche@gmail.com';
+WHERE email = 'ofir.wienerman@gmail.com';
 
 -- Verify it worked
 SELECT id, email, email_confirmed_at, confirmed_at
 FROM auth.users
-WHERE email = 'admin.deutsche@gmail.com';
+WHERE email = 'ofir.wienerman@gmail.com';

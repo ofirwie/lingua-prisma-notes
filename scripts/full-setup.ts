@@ -1,8 +1,3 @@
-/**
- * Simple script that assumes user already logged in to the app
- * Just loads the lessons
- */
-
 import { createClient } from '@supabase/supabase-js';
 import { readFileSync } from 'fs';
 import { join } from 'path';
@@ -11,56 +6,43 @@ import { config } from 'dotenv';
 config();
 
 const supabaseUrl = process.env.VITE_SUPABASE_URL!;
-const supabaseKey = process.env.VITE_SUPABASE_PUBLISHABLE_KEY!;
+const serviceKey = process.env.SUPABASE_SERVICE_KEY_German!;
 const FIXED_EMAIL = 'ofir.wienerman@gmail.com';
 const FIXED_PASSWORD = 'Deutsche2024!Churro';
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = createClient(supabaseUrl, serviceKey);
 
 async function main() {
-  console.log('🔐 Logging in...');
+  console.log('🚀 Full Setup - Lingua Prisma\n');
 
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email: FIXED_EMAIL,
-    password: FIXED_PASSWORD,
-  });
+  // Step 1: Load lesson data
+  console.log('📚 Step 1: Loading 3 example lessons...\n');
 
-  if (error || !data.user) {
-    console.error(`\n❌ Could not login: ${error?.message}`);
-    console.log('\n⚠️  You need to login to the app first!');
-    console.log('   1. Open: https://lingua-prisma-notes.vercel.app');
-    console.log('   2. Enter password: Churro393$');
-    console.log('   3. Then run this script again\n');
-    process.exit(1);
-  }
-
-  const userId = data.user.id;
-  console.log(`✅ Logged in: ${data.user.email}\n`);
-
-  console.log('📚 Loading lessons...\n');
+  const userId = '47af86e4-bbbc-4cd5-98a1-f670d2726dca';
 
   const lessons = [
-    { file: 'lesson-1-basic-verbs.json', num: 1 },
-    { file: 'lesson-2-common-nouns.json', num: 2 },
-    { file: 'lesson-3-questions-greetings.json', num: 3 },
+    'lesson-1-basic-verbs.json',
+    'lesson-2-common-nouns.json',
+    'lesson-3-questions-greetings.json'
   ];
 
-  for (const lesson of lessons) {
-    const lessonPath = join(process.cwd(), 'example-lessons', lesson.file);
+  for (let i = 0; i < lessons.length; i++) {
+    const filename = lessons[i];
+    const lessonPath = join(process.cwd(), 'example-lessons', filename);
     const lessonData = JSON.parse(readFileSync(lessonPath, 'utf-8'));
 
-    console.log(`   Lesson ${lesson.num}: ${lessonData.lesson.lesson_name}`);
+    console.log(`   ${i + 1}. ${lessonData.lesson.lesson_name}`);
 
     // Check if exists
     const { data: existing } = await supabase
       .from('lessons')
       .select('id')
       .eq('created_by', userId)
-      .eq('lesson_number', lesson.num)
+      .eq('lesson_number', lessonData.lesson.lesson_number)
       .maybeSingle();
 
     if (existing) {
-      console.log(`   ⚠️  Already exists - skipping\n`);
+      console.log('      ⚠️  Already exists - skipping\n');
       continue;
     }
 
@@ -76,15 +58,17 @@ async function main() {
       .select('id')
       .single();
 
-    if (lessonError) {
-      console.error(`   ❌ Error:`, lessonError, '\n');
+    if (lessonError || !newLesson) {
+      console.error('      ❌ Failed:', lessonError);
       continue;
     }
 
     // Load terms
     let newTerms = 0;
-    for (let i = 0; i < lessonData.terms.length; i++) {
-      const term = lessonData.terms[i];
+    let reusedTerms = 0;
+
+    for (let j = 0; j < lessonData.terms.length; j++) {
+      const term = lessonData.terms[j];
 
       // Check if term exists
       const { data: existingTerm } = await supabase
@@ -98,6 +82,7 @@ async function main() {
 
       if (existingTerm) {
         termId = existingTerm.id;
+        reusedTerms++;
       } else {
         const { data: newTerm } = await supabase
           .from('terms')
@@ -139,14 +124,17 @@ async function main() {
         term_id: termId,
         category: term.category,
         subcategory: term.subcategory || null,
-        order_index: i,
+        order_index: j,
       });
     }
 
-    console.log(`   ✅ Loaded ${newTerms} terms\n`);
+    console.log(`      ✅ ${newTerms} new, ${reusedTerms} reused\n`);
   }
 
-  console.log('✨ All done! Refresh your app to see the lessons.\n');
+  console.log('✨ Done! Open https://lingua-prisma-notes.vercel.app');
 }
 
-main().catch(console.error);
+main().catch((error) => {
+  console.error('\n❌ Error:', error.message);
+  process.exit(1);
+});
