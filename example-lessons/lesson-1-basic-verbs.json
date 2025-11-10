@@ -1,0 +1,174 @@
+{
+  "lesson": {
+    "lesson_number": 1,
+    "lesson_name": "Basic Verbs",
+    "topics": ["Present Tense", "Daily Actions", "Essential Verbs"]
+  },
+  "terms": [
+    {
+      "german": "sein",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "להיות",
+        "en": "to be"
+      },
+      "category": "Essential Verbs",
+      "ipa": "zaɪn"
+    },
+    {
+      "german": "haben",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "להחזיק, לקבל",
+        "en": "to have"
+      },
+      "category": "Essential Verbs",
+      "ipa": "ˈhaːbən"
+    },
+    {
+      "german": "werden",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "להפוך, להיות",
+        "en": "to become, will"
+      },
+      "category": "Essential Verbs",
+      "ipa": "ˈveːɐ̯dən"
+    },
+    {
+      "german": "können",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "יכול, מסוגל",
+        "en": "can, to be able to"
+      },
+      "category": "Modal Verbs",
+      "ipa": "ˈkœnən"
+    },
+    {
+      "german": "müssen",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "חייב, מוכרח",
+        "en": "must, to have to"
+      },
+      "category": "Modal Verbs",
+      "ipa": "ˈmʏsn̩"
+    },
+    {
+      "german": "sagen",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "לומר, להגיד",
+        "en": "to say, to tell"
+      },
+      "category": "Communication",
+      "ipa": "ˈzaːɡn̩"
+    },
+    {
+      "german": "machen",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "לעשות",
+        "en": "to do, to make"
+      },
+      "category": "Actions",
+      "ipa": "ˈmaxn̩"
+    },
+    {
+      "german": "gehen",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "ללכת, להלך",
+        "en": "to go, to walk"
+      },
+      "category": "Movement",
+      "ipa": "ˈɡeːən"
+    },
+    {
+      "german": "kommen",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "לבוא",
+        "en": "to come"
+      },
+      "category": "Movement",
+      "ipa": "ˈkɔmən"
+    },
+    {
+      "german": "sehen",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "לראות",
+        "en": "to see"
+      },
+      "category": "Perception",
+      "ipa": "ˈzeːən"
+    },
+    {
+      "german": "wissen",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "לדעת",
+        "en": "to know (facts)"
+      },
+      "category": "Cognition",
+      "ipa": "ˈvɪsn̩"
+    },
+    {
+      "german": "geben",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "לתת",
+        "en": "to give"
+      },
+      "category": "Actions",
+      "ipa": "ˈɡeːbn̩"
+    },
+    {
+      "german": "nehmen",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "לקחת",
+        "en": "to take"
+      },
+      "category": "Actions",
+      "ipa": "ˈneːmən"
+    },
+    {
+      "german": "essen",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "לאכול",
+        "en": "to eat"
+      },
+      "category": "Daily Activities",
+      "ipa": "ˈɛsn̩"
+    },
+    {
+      "german": "trinken",
+      "part": "verb",
+      "gender": "none",
+      "translations": {
+        "he": "לשתות",
+        "en": "to drink"
+      },
+      "category": "Daily Activities",
+      "ipa": "ˈtʁɪŋkn̩"
+    }
+  ]
+}

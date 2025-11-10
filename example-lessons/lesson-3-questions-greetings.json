@@ -1,0 +1,169 @@
+{
+  "lesson": {
+    "lesson_number": 3,
+    "lesson_name": "Questions & Greetings",
+    "topics": ["Question Words", "Greetings", "Basic Phrases", "Politeness"]
+  },
+  "terms": [
+    {
+      "german": "Hallo",
+      "part": "phrase",
+      "gender": "none",
+      "translations": {
+        "he": "שלום, היי",
+        "en": "Hello, Hi"
+      },
+      "category": "Greetings"
+    },
+    {
+      "german": "Guten Morgen",
+      "part": "phrase",
+      "gender": "none",
+      "translations": {
+        "he": "בוקר טוב",
+        "en": "Good morning"
+      },
+      "category": "Greetings"
+    },
+    {
+      "german": "Guten Tag",
+      "part": "phrase",
+      "gender": "none",
+      "translations": {
+        "he": "שלום (ביום)",
+        "en": "Good day, Hello"
+      },
+      "category": "Greetings"
+    },
+    {
+      "german": "Guten Abend",
+      "part": "phrase",
+      "gender": "none",
+      "translations": {
+        "he": "ערב טוב",
+        "en": "Good evening"
+      },
+      "category": "Greetings"
+    },
+    {
+      "german": "Tschüss",
+      "part": "phrase",
+      "gender": "none",
+      "translations": {
+        "he": "ביי, להתראות",
+        "en": "Bye, See you"
+      },
+      "category": "Farewells",
+      "ipa": "tʃʏs"
+    },
+    {
+      "german": "Auf Wiedersehen",
+      "part": "phrase",
+      "gender": "none",
+      "translations": {
+        "he": "להתראות (רשמי)",
+        "en": "Goodbye (formal)"
+      },
+      "category": "Farewells"
+    },
+    {
+      "german": "wie",
+      "part": "adverb",
+      "gender": "none",
+      "translations": {
+        "he": "איך, כיצד",
+        "en": "how"
+      },
+      "category": "Question Words",
+      "ipa": "viː"
+    },
+    {
+      "german": "was",
+      "part": "adverb",
+      "gender": "none",
+      "translations": {
+        "he": "מה",
+        "en": "what"
+      },
+      "category": "Question Words",
+      "ipa": "vas"
+    },
+    {
+      "german": "wer",
+      "part": "adverb",
+      "gender": "none",
+      "translations": {
+        "he": "מי",
+        "en": "who"
+      },
+      "category": "Question Words",
+      "ipa": "veːɐ̯"
+    },
+    {
+      "german": "wo",
+      "part": "adverb",
+      "gender": "none",
+      "translations": {
+        "he": "איפה",
+        "en": "where"
+      },
+      "category": "Question Words",
+      "ipa": "voː"
+    },
+    {
+      "german": "wann",
+      "part": "adverb",
+      "gender": "none",
+      "translations": {
+        "he": "מתי",
+        "en": "when"
+      },
+      "category": "Question Words",
+      "ipa": "van"
+    },
+    {
+      "german": "warum",
+      "part": "adverb",
+      "gender": "none",
+      "translations": {
+        "he": "למה, מדוע",
+        "en": "why"
+      },
+      "category": "Question Words",
+      "ipa": "vaˈʁʊm"
+    },
+    {
+      "german": "Bitte",
+      "part": "phrase",
+      "gender": "none",
+      "translations": {
+        "he": "בבקשה",
+        "en": "Please, You're welcome"
+      },
+      "category": "Politeness",
+      "ipa": "ˈbɪtə"
+    },
+    {
+      "german": "Danke",
+      "part": "phrase",
+      "gender": "none",
+      "translations": {
+        "he": "תודה",
+        "en": "Thank you"
+      },
+      "category": "Politeness",
+      "ipa": "ˈdaŋkə"
+    },
+    {
+      "german": "Entschuldigung",
+      "part": "phrase",
+      "gender": "none",
+      "translations": {
+        "he": "סליחה",
+        "en": "Excuse me, Sorry"
+      },
+      "category": "Politeness",
+      "ipa": "ɛntˈʃʊldɪɡʊŋ"
+    }
+  ]
+}

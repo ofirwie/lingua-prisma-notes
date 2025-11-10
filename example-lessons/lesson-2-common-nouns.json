@@ -1,0 +1,141 @@
+{
+  "lesson": {
+    "lesson_number": 2,
+    "lesson_name": "Common Nouns",
+    "topics": ["Articles", "Gender", "Daily Objects", "Family"]
+  },
+  "terms": [
+    {
+      "german": "Mann",
+      "part": "noun",
+      "gender": "der",
+      "translations": {
+        "he": "גבר, איש",
+        "en": "man"
+      },
+      "category": "People",
+      "ipa": "man"
+    },
+    {
+      "german": "Frau",
+      "part": "noun",
+      "gender": "die",
+      "translations": {
+        "he": "אישה, גברת",
+        "en": "woman, Mrs."
+      },
+      "category": "People",
+      "ipa": "fʁaʊ"
+    },
+    {
+      "german": "Kind",
+      "part": "noun",
+      "gender": "das",
+      "translations": {
+        "he": "ילד, ילדה",
+        "en": "child"
+      },
+      "category": "People",
+      "ipa": "kɪnt"
+    },
+    {
+      "german": "Haus",
+      "part": "noun",
+      "gender": "das",
+      "translations": {
+        "he": "בית",
+        "en": "house"
+      },
+      "category": "Places",
+      "ipa": "haʊs"
+    },
+    {
+      "german": "Schule",
+      "part": "noun",
+      "gender": "die",
+      "translations": {
+        "he": "בית ספר",
+        "en": "school"
+      },
+      "category": "Places",
+      "ipa": "ˈʃuːlə"
+    },
+    {
+      "german": "Stadt",
+      "part": "noun",
+      "gender": "die",
+      "translations": {
+        "he": "עיר",
+        "en": "city"
+      },
+      "category": "Places",
+      "ipa": "ʃtat"
+    },
+    {
+      "german": "Tisch",
+      "part": "noun",
+      "gender": "der",
+      "translations": {
+        "he": "שולחן",
+        "en": "table"
+      },
+      "category": "Furniture",
+      "ipa": "tɪʃ"
+    },
+    {
+      "german": "Stuhl",
+      "part": "noun",
+      "gender": "der",
+      "translations": {
+        "he": "כיסא",
+        "en": "chair"
+      },
+      "category": "Furniture",
+      "ipa": "ʃtuːl"
+    },
+    {
+      "german": "Bett",
+      "part": "noun",
+      "gender": "das",
+      "translations": {
+        "he": "מיטה",
+        "en": "bed"
+      },
+      "category": "Furniture",
+      "ipa": "bɛt"
+    },
+    {
+      "german": "Buch",
+      "part": "noun",
+      "gender": "das",
+      "translations": {
+        "he": "ספר",
+        "en": "book"
+      },
+      "category": "Objects",
+      "ipa": "buːx"
+    },
+    {
+      "german": "Wasser",
+      "part": "noun",
+      "gender": "das",
+      "translations": {
+        "he": "מים",
+        "en": "water"
+      },
+      "category": "Food & Drink",
+      "ipa": "ˈvasɐ"
+    },
+    {
+      "german": "Brot",
+      "part": "noun",
+      "gender": "das",
+      "translations": {
+        "he": "לחם",
+        "en": "bread"
+      },
+      "category": "Food & Drink",
+      "ipa": "bʁoːt"
+    }
+  ]
+}
