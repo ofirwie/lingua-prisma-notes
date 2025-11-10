@@ -15,6 +15,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Upload, FileText, Download, AlertCircle, CheckCircle2, FileJson } from 'lucide-react';
 import { parseCSV, validateCSVRows, downloadCSVTemplate, CSVRow } from '@/lib/csv-parser';
 import { validateLessonJSON, importLessonFromJSON } from '@/lib/import-logic';
+import { checkLessonConflict, formatConflictMessage } from '@/lib/conflict-resolver';
 import { LessonImportJSON } from '@/types/lesson-import';
 import { useImportCSV } from '@/hooks/useImportCSV';
 import { supabase } from '@/integrations/supabase/client';
@@ -110,6 +111,27 @@ export function ImportDialog() {
     } else {
       if (!parsedJSONData || !user || validationErrors.length > 0) return;
 
+      // Check for conflicts BEFORE importing
+      const existing = await checkLessonConflict(
+        supabase,
+        user.id,
+        parsedJSONData.lesson.lesson_number
+      );
+
+      if (existing) {
+        const message = formatConflictMessage(
+          parsedJSONData.lesson.lesson_number,
+          existing,
+          parsedJSONData.lesson.lesson_name,
+          parsedJSONData.lesson.topics
+        );
+
+        const confirmed = window.confirm(message);
+        if (!confirmed) {
+          return; // User cancelled
+        }
+      }
+
       setImporting(true);
       try {
         const result = await importLessonFromJSON(supabase, user.id, parsedJSONData);
@@ -124,7 +146,9 @@ export function ImportDialog() {
           setTimeout(() => {
             setOpen(false);
             resetState();
-          }, 2000);
+            // Reload page to refresh lessons list
+            window.location.reload();
+          }, 1500);
         } else {
           toast({
             title: 'Import Failed',
