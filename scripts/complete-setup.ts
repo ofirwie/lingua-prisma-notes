@@ -3,38 +3,51 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import { config } from 'dotenv';
 
-// Load environment variables
 config();
 
 const supabaseUrl = process.env.VITE_SUPABASE_URL!;
 const supabaseKey = process.env.VITE_SUPABASE_PUBLISHABLE_KEY!;
 
-if (!supabaseUrl || !supabaseKey) {
-  console.error('❌ Missing Supabase credentials');
-  process.exit(1);
-}
-
-const supabase = createClient(supabaseUrl, supabaseKey);
-
-// Fixed credentials
 const FIXED_EMAIL = 'admin.deutsche@gmail.com';
 const FIXED_PASSWORD = 'Deutsche2024!Churro';
 
-async function login() {
-  console.log('🔐 Logging in...');
+const supabase = createClient(supabaseUrl, supabaseKey);
 
-  const { data, error } = await supabase.auth.signInWithPassword({
+async function createUser() {
+  console.log('👤 Creating/logging in user...');
+
+  // Try to sign up with email confirmation disabled
+  const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+    email: FIXED_EMAIL,
+    password: FIXED_PASSWORD,
+    options: {
+      data: {
+        name: 'Admin',
+      },
+      emailRedirectTo: undefined,
+    }
+  });
+
+  if (signUpError && signUpError.message !== 'User already registered') {
+    console.error('   Signup error:', signUpError.message);
+  }
+
+  // Always try to login (works whether user is new or existing)
+  console.log('   Attempting login...');
+  const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
     email: FIXED_EMAIL,
     password: FIXED_PASSWORD,
   });
 
-  if (error || !data.user) {
-    console.error('❌ Login failed:', error?.message);
-    process.exit(1);
+  if (signInError) {
+    console.error('\n⚠️  Could not login automatically.');
+    console.error('   Please login to the app once with password: Churro393$');
+    console.error('   Then run this script again.\n');
+    throw new Error(`Login failed: ${signInError.message}`);
   }
 
-  console.log('✅ Logged in as:', data.user.email);
-  return data.user.id;
+  console.log('✅ User ready:', signInData.user!.email);
+  return signInData.user!.id;
 }
 
 async function loadLesson(userId: string, filename: string) {
@@ -52,7 +65,7 @@ async function loadLesson(userId: string, filename: string) {
     .maybeSingle();
 
   if (existing) {
-    console.log(`⚠️  Lesson ${lesson.lesson.lesson_number} already exists. Skipping...`);
+    console.log(`   ⚠️  Already exists. Skipping...`);
     return;
   }
 
@@ -69,7 +82,7 @@ async function loadLesson(userId: string, filename: string) {
     .single();
 
   if (lessonError || !newLesson) {
-    console.error('❌ Failed to create lesson:', lessonError?.message);
+    console.error(`   ❌ Failed:`, lessonError?.message);
     return;
   }
 
@@ -81,7 +94,6 @@ async function loadLesson(userId: string, filename: string) {
   for (let i = 0; i < lesson.terms.length; i++) {
     const term = lesson.terms[i];
 
-    // Check if term exists
     const { data: existingTerm } = await supabase
       .from('terms')
       .select('id')
@@ -108,7 +120,7 @@ async function loadLesson(userId: string, filename: string) {
         .single();
 
       if (termError || !newTerm) {
-        console.error(`❌ Failed to create term "${term.german}":`, termError?.message);
+        console.error(`   ❌ Term "${term.german}" failed:`, termError?.message);
         continue;
       }
 
@@ -133,41 +145,36 @@ async function loadLesson(userId: string, filename: string) {
       }, { onConflict: 'term_id,lang' });
     }
 
-    if (term.translations.it) {
-      await supabase.from('term_translations').upsert({
-        term_id: termId,
-        lang: 'italian',
-        text: term.translations.it,
-      }, { onConflict: 'term_id,lang' });
-    }
-
-    // Link term to lesson
+    // Link to lesson
     await supabase.from('lesson_terms').insert({
       lesson_id: lessonId,
       term_id: termId,
       category: term.category,
-      subcategory: term.subcategory || null,
       order_index: i,
     });
   }
 
-  console.log(`✅ "${lesson.lesson.lesson_name}": ${newTerms} new, ${reusedTerms} reused`);
+  console.log(`   ✅ Loaded: ${newTerms} new, ${reusedTerms} reused`);
 }
 
 async function main() {
-  console.log('🚀 Loading Example Lessons\n');
+  console.log('🚀 Complete Setup - Creating User & Loading Lessons\n');
 
-  const userId = await login();
+  try {
+    const userId = await createUser();
 
-  await loadLesson(userId, 'lesson-1-basic-verbs.json');
-  await loadLesson(userId, 'lesson-2-common-nouns.json');
-  await loadLesson(userId, 'lesson-3-questions-greetings.json');
+    console.log('\n📚 Loading lessons...');
+    await loadLesson(userId, 'lesson-1-basic-verbs.json');
+    await loadLesson(userId, 'lesson-2-common-nouns.json');
+    await loadLesson(userId, 'lesson-3-questions-greetings.json');
 
-  console.log('\n✨ Done! Refresh your app to see the lessons.');
-  process.exit(0);
+    console.log('\n✨ Done! Open your app and login with password: Churro393$');
+    console.log('   You should see 3 lessons in the sidebar.');
+    process.exit(0);
+  } catch (error) {
+    console.error('\n❌ Error:', error);
+    process.exit(1);
+  }
 }
 
-main().catch((error) => {
-  console.error('❌ Error:', error);
-  process.exit(1);
-});
+main();
