@@ -10,7 +10,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { BookOpen } from 'lucide-react';
 
 const CORRECT_PASSWORD = 'Churro393$';
-const FIXED_EMAIL = 'ofir.wienerman@gmail.com';
+const FIXED_EMAIL = 'ofir393@gmail.com';
 const FIXED_SUPABASE_PASSWORD = 'Deutsche2024!Churro';
 
 const SimpleAuth = () => {
